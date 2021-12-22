@@ -33,6 +33,11 @@ redis:
       authCode: "portal:authCode:"
     expire:
       authCode: 120 # 验证码超期时间
+# Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE2NDAwNTkzNjc5MDgsImV4cCI6MTY0MDY2NDE2N30.Lb8fKFizWtO_CCOwpiEO6xWY3KCwDL11g7DjUoBuux2Bc1nD48n52HTpFcS-ERX-tDqY9IuN271Nz9VlFu6iYw
+# Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE2NDAwMDg3MjY4NzgsImV4cCI6MTY0MDYxMzUyNn0.chr9YjUrIHvTIhRdedoSRxpacKuJxOZ1NAhU8iKY5PC2wPF8bFPRy5hnc2qpKJLwhMv3YgP4hUYdGX4qt3JQKA
+# swagger3 http://localhost:8080/swagger-ui/index.html
+# swagger2 http://localhost:8080/swagger-ui/
+# Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0IiwiY3JlYXRlZCI6MTY0MDAwODM4MTU0MSwiZXhwIjoxNjQwNjEzMTgxfQ.wJF9eYFVowA_hGi46XgPvqMkyvvFqSKdJ7MOjsOZsOpHH7LV80Nv39F7okfnsXjtOyux_b-Hk81fuEC-XCzZsQ
 swagger:
   enable: true
   
@@ -40,4 +45,16 @@ jwt:
   tokenHeader: Authorization #JWT存储的请求头
   secret: mySecret #JWT加解密使用的密钥
   expiration: 604800 #JWT的超期限时间(60*60*24)
-  tokenHead: Bearer  #JWT负载中拿到开头
+  tokenHead: bearer  #JWT负载中拿到开头
+
+data:
+  elasticsearch:
+    repositories:
+      enabled: true
+    cluster-nodes: 127.0.0.1:9300 # es的连接地址及端口号
+    cluster-name: elasticsearch # es集群的名称
+
+mongodb:
+  host: localhost # mongodb的连接地址
+  port: 27017 # mongodb的连接端口号
+  database: mall-port # mongodb的连接的数据库

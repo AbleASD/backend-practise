@@ -7,6 +7,7 @@ import com.lw.mall.demo.dto.AdminUserDetails;
 import com.lw.mall.demo.mbg.model.UmsAdmin;
 import com.lw.mall.demo.mbg.model.UmsPermission;
 import com.lw.mall.demo.service.UmsAdminService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

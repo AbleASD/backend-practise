@@ -16,6 +16,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 
 /**
@@ -38,6 +39,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain chain) throws ServletException, IOException {
         String authHeader = request.getHeader(this.tokenHeader);
+        LOGGER.info("checking request:{}", authHeader);
         if (authHeader != null && authHeader.startsWith(this.tokenHead)) {
             String authToken = authHeader.substring(this.tokenHead.length());// The part after "Bearer "
             String username = jwtTokenUtil.getUserNameFromToken(authToken);
