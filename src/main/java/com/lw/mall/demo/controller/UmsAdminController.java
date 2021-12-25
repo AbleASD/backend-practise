@@ -13,9 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+
 
 /**
  * 后台用户管理
@@ -64,4 +69,20 @@ public class UmsAdminController {
         List<UmsPermission> permissionList = adminService.getPermissionList(adminId);
         return CommonResult.success(permissionList);
     }
+
+    @ApiOperation(value = "获取当前用户信息")
+    @RequestMapping(value="/info", method=RequestMethod.GET)
+    @ResponseBody
+    //getInfo: roles must be a non-null array !
+    public CommonResult<?> getAdminInfo(Principal principal) {
+        if (principal == null) {
+            return CommonResult.unauthorized(null);
+        }
+        String username = principal.getName();
+        UmsAdmin umsAdmin = adminService.getAdminByUsername(username);
+        Map<String, Object> data = new HashMap<>();
+        data.put("username", umsAdmin.getUsername());
+        return CommonResult.success(data);       
+    }
+    
 }
